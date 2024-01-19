@@ -41,27 +41,25 @@
 
         // Save settings and update URL
         function saveSettings() {
-            var newTitle = document.getElementById('tabTitle').value;
-            var newColor = document.getElementById('bgColor').value;
-            window.history.pushState({}, '', '/' + encodeURIComponent(newTitle) + '/' + encodeURIComponent(newColor));
-            document.getElementById('controls').style.display = 'none'; // Hide controls
-        }
-
-        // Function to check URL and set values
-        function checkURLAndSetValues() {
-            var path = window.location.pathname;
-            var parts = path.split('/').filter(Boolean); // Splits and removes empty parts
-            if (parts.length === 2) {
-                var title = decodeURIComponent(parts[0]);
-                var color = decodeURIComponent(parts[1]);
-                document.getElementById('tabTitle').value = title;
-                document.getElementById('bgColor').value = color;
-                updateTitle();
-                updateColor();
-                document.getElementById('controls').style.display = 'none'; // Hide controls
-            }
-        }
-
+             var newTitle = document.getElementById('tabTitle').value;
+             var newColor = document.getElementById('bgColor').value;
+             window.history.pushState({}, '', '?title=' + encodeURIComponent(newTitle) + '&color=' + encodeURIComponent(newColor));
+             document.getElementById('controls').style.display = 'none'; // Hide controls
+         }
+ 
+         // Function to check URL and set values
+         function checkURLAndSetValues() {
+             var searchParams = new URLSearchParams(window.location.search);
+             if (searchParams.has('title') && searchParams.has('color')) {
+                 var title = decodeURIComponent(searchParams.get('title'));
+                 var color = decodeURIComponent(searchParams.get('color'));
+                 document.getElementById('tabTitle').value = title;
+                 document.getElementById('bgColor').value = color;
+                 updateTitle();
+                 updateColor();
+                 document.getElementById('controls').style.display = 'none'; // Hide controls
+             }
+         }
         // Call on page load
         checkURLAndSetValues();
     </script>
