@@ -22,7 +22,7 @@
 <body>
     <div id="controls">
         <input type="text" id="tabTitle" placeholder="Enter new tab title" oninput="updateTitle()" default="Custom Tab Title">
-        <input type="color" id="bgColor" title="Choose your color" onchange="updateColor()" value="#ffffff">
+        <input type="color" id="bgColor" title="Choose your color" onchange="updateColor()" value="#4a43d3">
         <button onclick="saveSettings()">Save</button>
     </div>
 
@@ -61,6 +61,7 @@
              }
          }
         // Call on page load
+        updateColor()
         checkURLAndSetValues();
     </script>
 </body>
